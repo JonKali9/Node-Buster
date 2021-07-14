@@ -1,23 +1,39 @@
 #home {
     text-align: center;
     min-height: 100vh;
+    width: 100%;
+    min-width: 33rem;
     background-color: #121212;
     color: white;
 }
 
-#home #banner {
+
+#home header {
     width: 100%;
-    max-height: 33rem;
-    object-fit: cover;
+    height: 50vh;
+    min-height: 18rem;
+    max-height: 35rem;
+    display: flex;
+    align-items: center;
+}
+#home #logo {
+    min-width: 15rem;
+    max-width: 30rem;
+    width: 50%;
+    margin: auto;
 }
 
+#home content {
+    padding-bottom: 10rem;
+    display: grid;
+    grid-row-gap: 5rem;
+}
 #home .section-container {
     background-color: #1e1e1e;
     width: 100%;
 }
 #home .section {
     margin: 0 auto;
-    margin-top: 5rem;
     padding: 2rem 0;
     max-width: 35rem;
     text-align: left;
@@ -29,4 +45,37 @@
 #home .section p {
     font-size: 1.25rem;
     color: #939393;
+}
+
+#home #mailing {
+    width: 28rem;
+    margin: 0 auto;
+    padding: 4em 2rem;
+    background-color: #1e1e1e;
+    border-radius: 1rem;
+}
+#home #mailing input {
+    width: 20rem;
+    margin-top: 2.5rem;
+    background-color: #383838;
+    color: white;
+    outline: none;
+    font-size: 1.2rem;
+    padding: .5rem 2rem;
+    border-radius: .2rem;
+}
+#home #mailing button {
+    margin-top: 1.5rem;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    font-size: 1.1rem;
+    padding: .7rem 2.5rem;
+    border: .15rem solid white;
+    border-radius: .2rem;
+}
+#home #mailing button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #1e1e1e;
+    border: .15rem solid white;
 }
