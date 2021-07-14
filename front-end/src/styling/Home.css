@@ -1,14 +1,14 @@
 #home {
     text-align: center;
-    min-height: 100vh;
     width: 100%;
-    min-width: 33rem;
+    min-height: 100vh;
     background-color: #121212;
     color: white;
 }
 
 
 #home header {
+    background-image: linear-gradient(to bottom, rgb(28, 28, 31), rgba(255, 255, 255, 0));
     width: 100%;
     height: 50vh;
     min-height: 18rem;
@@ -34,8 +34,8 @@
 }
 #home .section {
     margin: 0 auto;
+    width: 90%;
     padding: 2rem 0;
-    max-width: 35rem;
     text-align: left;
 }
 #home .section h3 {
@@ -48,14 +48,14 @@
 }
 
 #home #mailing {
-    width: 28rem;
+    width: 30rem;
     margin: 0 auto;
     padding: 4em 2rem;
     background-color: #1e1e1e;
     border-radius: 1rem;
 }
 #home #mailing input {
-    width: 20rem;
+    width: 60%;
     margin-top: 2.5rem;
     background-color: #383838;
     color: white;
@@ -68,6 +68,7 @@
     margin-top: 1.5rem;
     background-color: rgba(255, 255, 255, 0);
     color: white;
+    transition: background-color .4s;
     font-size: 1.1rem;
     padding: .7rem 2.5rem;
     border: .15rem solid white;
@@ -78,4 +79,13 @@
     background-color: white;
     color: #1e1e1e;
     border: .15rem solid white;
+}
+
+@media (orientation : portrait) {    
+    #home #logo {
+        width: 100%;
+    }
+    #home #mailing {
+        width: 60vw;
+    }
 }
