@@ -5,8 +5,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const https = require('https');
-const fs = require('fs');
 
 // routes
 const mailinglist = require('./routes/mailing-list');
@@ -24,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // setup routers
-app.use('/api/mailing-list', mailinglist);
+app.use('/mailing-list', mailinglist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,11 +41,7 @@ app.use(function(err, req, res, next) {
 });
 
 // run server
-https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app)
-.listen(PORT, (err) => {
+app.listen(PORT, (err) => {
   console.clear();
   if (err) throw err;
   console.log(`[+] Server listening on port ${PORT}.`)
