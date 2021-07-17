@@ -17,13 +17,13 @@
     align-items: center;
 }
 #home #logo {
-    min-width: 15rem;
-    max-width: 30rem;
+    min-width: 20rem;
+    max-width: 35rem;
     width: 50%;
     margin: auto;
 }
 
-#home content {
+#home #content {
     padding-bottom: 10rem;
     display: grid;
     grid-row-gap: 5rem;
@@ -81,9 +81,34 @@
     border: .15rem solid white;
 }
 
+#home footer {
+    background-color: rgba(60, 61, 78, 0.2);
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+#home footer #left {
+    margin-left: 2rem;
+    text-align: left;
+}
+#home footer #right {
+    margin-right: 2rem;
+    text-align: right;
+}
+#home footer .app-icon {
+    width: 4rem;
+}
+#home footer .app-icon:hover {
+    cursor: pointer;
+}
+
 @media (orientation : portrait) {    
     #home #logo {
         width: 100%;
+        padding: 1.5rem;
+        min-width: 15rem;
+        max-width: 35rem;
     }
     #home #mailing {
         width: 60vw;

@@ -1,14 +1,21 @@
 import React, {useState} from 'react';
 import '../styling/Home.css'
 import Logo from '../images/logo.png';
+import Twitter from '../images/twitter.png'
 
 export default function Home() {
     const [email, setEmail] = useState('');
     const addEmail = e => {
-        if (email.includes('@')) alert('Added to mailing list!')
-        else {
+        e.preventDefault();
+        if (email.includes('@')) {
+            fetch(`/api/mailing-list/${email}`, {
+                method: 'POST'
+            })
+            .then(res => res.text())
+            .then(res => alert(res) ? null : window.location.reload())
+            .catch(err => alert(err) ? null : window.location.reload());
+        } else {
             alert('Invalid email!')
-            e.preventDefault();
         }
     }
 
@@ -18,7 +25,7 @@ export default function Home() {
                 <img src={Logo} id='logo' alt='logo' />
             </header>
 
-            <content>
+            <div id='content'>
                 <div className='section-container'>
                     <div className='section'>
                         <h3>What is Node Buster?</h3>
@@ -56,7 +63,16 @@ export default function Home() {
                     <input placeholder='Enter Email' onChange={e => setEmail(e.target.value)} /> <br />
                     <button>Submit</button>
                 </form>
-            </content>
+            </div>
+
+            <footer>
+                <div id='left'>
+                    <h3>Contact us at <span style={{textDecoration:'underline'}}>nodebuster@gmail.com</span></h3>
+                </div>
+                <div id='right'>
+                    <img src={Twitter} className='app-icon' alt='twitter' onClick={() => window.open('https://twitter.com/Node_Buster', '_blank')} />
+                </div>
+            </footer>
         </div>
     )
 }
