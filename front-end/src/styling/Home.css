@@ -6,19 +6,23 @@
     color: white;
 }
 
+#home #particles {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
 
 #home header {
     background-image: linear-gradient(to bottom, rgb(28, 28, 31), rgba(255, 255, 255, 0));
     width: 100%;
-    height: 50vh;
+    height: 100vh;
     min-height: 18rem;
-    max-height: 35rem;
     display: flex;
     align-items: center;
 }
 #home #logo {
     min-width: 20rem;
-    max-width: 35rem;
+    max-width: 50rem;
     width: 50%;
     margin: auto;
 }
@@ -29,14 +33,17 @@
     grid-row-gap: 5rem;
 }
 #home .section-container {
+    margin: 0 auto;
     background-color: #1e1e1e;
-    width: 100%;
+    width: 90%;
+    border-radius: 2rem;
 }
 #home .section {
-    margin: 0 auto;
-    width: 90%;
-    padding: 2rem 0;
+    width: 80%;
+    max-width: 50rem;
+    padding: 3rem 0;
     text-align: left;
+    margin-left: 10%;
 }
 #home .section h3 {
     font-size: 1.8rem;

@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import '../styling/Home.css'
 import Logo from '../images/logo.png';
-import Twitter from '../images/twitter.png'
+import Twitter from '../images/twitter.png';
+import Particles from 'react-particles-js';
+import ParticlesConfig from '../particlesConfig';
 
 export default function Home() {
     const [email, setEmail] = useState('');
@@ -21,7 +23,8 @@ export default function Home() {
 
     return (
         <div id='home'>
-            <header>
+            <Particles id='particles' params={ParticlesConfig} />
+            <header id='particles-js'>
                 <img src={Logo} id='logo' alt='logo' />
             </header>
 
