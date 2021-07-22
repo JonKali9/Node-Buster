@@ -1,0 +1,38 @@
+#navbar {
+    width: 100%;
+    max-width: 50rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    grid-column-gap: 1rem;
+    background-color: #12121200;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+#navbar .navlink {
+    margin-top: 1rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    color: white;
+    text-decoration: none;
+}
+
+#navbar .navlink:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#navbar #play-link {
+    height: 1.5rem;
+    border: .2rem solid white;
+    border-radius: .6rem;
+    max-width: 13rem;
+}
+
+#navbar #play-link:hover {
+    background-color: white;
+    color: #121212;
+}

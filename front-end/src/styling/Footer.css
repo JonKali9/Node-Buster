@@ -1,0 +1,22 @@
+#footer {
+    background-color: rgba(60, 61, 78, 0.2);
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+#footer #left {
+    margin-left: 2rem;
+    text-align: left;
+}
+#footer #right {
+    margin-right: 2rem;
+    text-align: right;
+}
+#footer .app-icon {
+    width: 3.5rem;
+    margin-left: 1rem;
+}
+#footer .app-icon:hover {
+    cursor: pointer;
+}

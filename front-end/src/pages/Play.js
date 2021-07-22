@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import '../styling/Error.css'
+import '../styling/Play.css'
 import Logo from '../images/logo.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Particles from 'react-particles-js';
 import ParticlesConfig from '../particlesConfig';
 
-export default function Error() {
+export default function Play() {
     const [email, setEmail] = useState('');
     const addEmail = e => {
         e.preventDefault();
@@ -29,7 +29,7 @@ export default function Error() {
     }
 
     return (
-        <div id='error'>
+        <div id='play'>
             <Navbar />
             <Particles id='particles' params={ParticlesConfig} />
             <header id='particles-js'>
@@ -37,8 +37,8 @@ export default function Error() {
             </header>
 
             <div id='content'>
-                <h1>404</h1>
-                <h2>Page not found :(</h2>
+                <h1>COMING SOON</h1>
+                <h2>Node Buster is currently in production</h2>
 
                 <form onSubmit={addEmail} id='mailing'>
                     <h2>Interested in Joining?</h2>

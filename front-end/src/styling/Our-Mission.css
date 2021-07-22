@@ -1,4 +1,4 @@
-#home {
+#our-mission {
     text-align: center;
     width: 100%;
     min-height: 100vh;
@@ -6,82 +6,67 @@
     color: white;
 }
 
-#home #particles {
+#our-mission #particles {
     width: 100%;
-    height: 99vh;
+    height: 69vh;
     position: absolute;
 }
 
-#home header {
+#our-mission header {
     background-image: linear-gradient(to bottom, rgb(28, 28, 31), rgba(255, 255, 255, 0));
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     min-height: 18rem;
     display: flex;
     align-items: center;
 }
-#home #logo {
+#our-mission #logo {
     min-width: 20rem;
     max-width: 50rem;
     width: 50%;
     margin: auto;
 }
 
-#home #content {
+#our-mission h1 {
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+#our-mission #content {
     padding-bottom: 10rem;
     display: grid;
     grid-row-gap: 5rem;
 }
-#home .alert-container {
-    margin: 0 auto;
-    background-color: #242424;
-    width: 100%;
-}
-#home .alert {
-    width: 80%;
-    max-width: 80rem;
-    padding: 3rem 0;
-    text-align: left;
-    margin-left: 10%;
-}
-#home .alert h3 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-}
-#home .alert p {
-    font-size: 1.25rem;
-    color: #939393;
-}
-#home .section-container {
+#our-mission .section-container {
     margin: 0 auto;
     background-color: #1e1e1e;
     width: 90%;
     border-radius: 2rem;
 }
-#home .section {
+#our-mission .section {
     width: 80%;
     max-width: 50rem;
     padding: 3rem 0;
     text-align: left;
     margin-left: 10%;
 }
-#home .section h3 {
+#our-mission .section h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
 }
-#home .section p {
+#our-mission .section p {
     font-size: 1.25rem;
     color: #939393;
 }
 
-#home #mailing {
+#our-mission #mailing {
     width: 30rem;
     margin: 0 auto;
     padding: 4em 2rem;
     background-color: #1e1e1e;
     border-radius: 1rem;
 }
-#home #mailing input {
+#our-mission #mailing input {
     width: 60%;
     margin-top: 2.5rem;
     background-color: #383838;
@@ -91,7 +76,7 @@
     padding: .5rem 2rem;
     border-radius: .2rem;
 }
-#home #mailing button {
+#our-mission #mailing button {
     margin-top: 1.5rem;
     background-color: rgba(255, 255, 255, 0);
     color: white;
@@ -101,7 +86,7 @@
     border: .15rem solid white;
     border-radius: .2rem;
 }
-#home #mailing button:hover {
+#our-mission #mailing button:hover {
     cursor: pointer;
     background-color: white;
     color: #1e1e1e;
@@ -109,13 +94,13 @@
 }
 
 @media (orientation : portrait) {    
-    #home #logo {
+    #our-mission #logo {
         width: 100%;
         padding: 1.5rem;
         min-width: 15rem;
         max-width: 35rem;
     }
-    #home #mailing {
+    #our-mission #mailing {
         width: 60vw;
     }
 }

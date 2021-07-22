@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import '../styling/Error.css'
+import '../styling/Our-Mission.css'
 import Logo from '../images/logo.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Particles from 'react-particles-js';
 import ParticlesConfig from '../particlesConfig';
 
-export default function Error() {
+export default function Timeline() {
     const [email, setEmail] = useState('');
     const addEmail = e => {
         e.preventDefault();
@@ -29,7 +29,7 @@ export default function Error() {
     }
 
     return (
-        <div id='error'>
+        <div id='our-mission'>
             <Navbar />
             <Particles id='particles' params={ParticlesConfig} />
             <header id='particles-js'>
@@ -37,8 +37,13 @@ export default function Error() {
             </header>
 
             <div id='content'>
-                <h1>404</h1>
-                <h2>Page not found :(</h2>
+                <h1>Timeline:</h1>
+                <div className='section-container'>
+                    <div className='section'>
+                        <h3>Founding of Node Buster</h3>
+                        <p>Founded in 2021 by its founder, JonKali. The site was announced on the 17th of July and gained its first initial fans. Soon after began the search for a team and investors...</p>
+                    </div>
+                </div>
 
                 <form onSubmit={addEmail} id='mailing'>
                     <h2>Interested in Joining?</h2>
