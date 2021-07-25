@@ -6,6 +6,7 @@ import './styling/Footer.css';
 // Import Pages
 import Home from './pages/Home';
 import OurMission from './pages/Our-Mission';
+import ContactUs from "./pages/Contact-Us";
 import Timeline from './pages/Timeline';
 import Play from './pages/Play'
 import Error from './pages/Error';
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/our-mission' component={OurMission} />
+          <Route exact path='/contact-us' component={ContactUs} />
           <Route exact path='/timeline' component={Timeline} />
           <Route exact path='/play' component={Play} />
           <Route component={Error} />

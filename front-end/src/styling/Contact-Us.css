@@ -1,0 +1,157 @@
+#contact-us {
+    text-align: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #121212;
+    color: white;
+}
+
+#contact-us #particles {
+    width: 100%;
+    height: 69vh;
+    position: absolute;
+}
+
+#contact-us header {
+    background-image: linear-gradient(to bottom, rgb(28, 28, 31), rgba(255, 255, 255, 0));
+    width: 100%;
+    height: 50vh;
+    min-height: 18rem;
+    display: flex;
+    align-items: center;
+}
+#contact-us #logo {
+    min-width: 20rem;
+    max-width: 35rem;
+    width: 50%;
+    margin: auto;
+}
+
+#contact-us h1 {
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+#contact-us #content {
+    padding-bottom: 10rem;
+    display: grid;
+    grid-row-gap: 5rem;
+}
+#contact-us .section-container {
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    width: 90%;
+    border-radius: 2rem;
+}
+#contact-us .section {
+    width: 80%;
+    max-width: 50rem;
+    padding: 3rem 0;
+    text-align: left;
+    margin-left: 10%;
+}
+#contact-us .section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+#contact-us .section p {
+    font-size: 1.25rem;
+    color: #939393;
+}
+
+#contact-us #contact-form {
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    width: 90%;
+    border-radius: 2rem;
+    max-width: 50rem;
+}
+#contact-us #contact-form h2 {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+#contact-us #contact-form #grid {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 4rem;
+    display: grid;
+    grid-template-rows: 3rem auto 4rem;
+    grid-row-gap: 1.5rem;
+}
+#contact-us #contact-form input, #contact-us #contact-form textarea {
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    outline: none;
+    resize: vertical;
+    background-color: #383838;
+    color: white;
+
+}
+#contact-us #contact-form textarea {
+    height: 10rem;
+}
+#contact-us #contact-form button {
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    outline: none;
+    resize: vertical;
+    background-color: rgba(255, 255, 255, 0);
+    border: .15rem solid white;
+    color: white;
+    transition: background-color .4s;
+}
+#contact-us #contact-form button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #121212;
+    border: .15rem solid white;
+}
+
+#contact-us #mailing {
+    width: 30rem;
+    margin: 0 auto;
+    padding: 4em 2rem;
+    background-color: #1e1e1e;
+    border-radius: 1rem;
+}
+#contact-us #mailing input {
+    width: 60%;
+    margin-top: 2.5rem;
+    background-color: #383838;
+    color: white;
+    outline: none;
+    font-size: 1.2rem;
+    padding: .8rem 1.5rem;
+    border-radius: .5rem;
+}
+#contact-us #mailing button {
+    margin-top: 1.5rem;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    transition: background-color .4s;
+    font-size: 1.1rem;
+    padding: .7rem 2.5rem;
+    border: .15rem solid white;
+    border-radius: .5rem;
+    width: 13rem;
+}
+#contact-us #mailing button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #1e1e1e;
+    border: .15rem solid white;
+}
+
+@media (orientation : portrait) {    
+    #contact-us #logo {
+        width: 100%;
+        padding: 1.5rem;
+        min-width: 15rem;
+        max-width: 35rem;
+    }
+    #contact-us #mailing {
+        width: 60vw;
+    }
+}

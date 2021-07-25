@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import '../styling/Error.css'
+import '../styling/Contact-Us.css'
 import Logo from '../images/logo.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Particle from '../components/Particle'
 
-export default function Error() {
+export default function ContactUs() {
     const [email, setEmail] = useState('');
     const addEmail = e => {
         e.preventDefault();
@@ -27,7 +27,7 @@ export default function Error() {
     }
 
     return (
-        <div id='error'>
+        <div id='contact-us'>
             <Navbar />
             <Particle />
             <header>
@@ -35,8 +35,30 @@ export default function Error() {
             </header>
 
             <div id='content'>
-                <h1>404</h1>
-                <h2>Page not found :(</h2>
+                <h1>Contact Us</h1>
+                <div className='section-container'>
+                    <div className='section'>
+                        <h3>Interested in Contacting Us?</h3>
+                        <p>
+                            Well you're in luck, we see communication with
+                            our users as a key priority, and have hence setup
+                            several different ways for you to contact us.
+                            We have a twitter and a discord where we interact with our users,
+                            as well as an email if you wish to be professional.
+                            We also have a contact form if you wish for anonoymous communiction.
+                            Whatever the case, we'll be happy to hear from you.
+                        </p>
+                    </div>
+                </div>
+
+                <form id='contact-form'>
+                    <h2>Contact Form</h2>
+                    <div id='grid'>
+                        <input placeholder='Username/Email (optional)'  />
+                        <textarea placeholder='Message' />
+                        <button>Submit</button>
+                    </div>
+                </form>
 
                 <form onSubmit={addEmail} id='mailing'>
                     <h2>Interested in Joining?</h2>

@@ -3,8 +3,7 @@ import '../styling/Our-Mission.css'
 import Logo from '../images/logo.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Particles from 'react-particles-js';
-import ParticlesConfig from '../particlesConfig';
+import Particle from '../components/Particle'
 
 export default function Timeline() {
     const [email, setEmail] = useState('');
@@ -31,8 +30,8 @@ export default function Timeline() {
     return (
         <div id='our-mission'>
             <Navbar />
-            <Particles id='particles' params={ParticlesConfig} />
-            <header id='particles-js'>
+            <Particle />
+            <header>
                 <img src={Logo} id='logo' alt='logo' />
             </header>
 
@@ -40,8 +39,35 @@ export default function Timeline() {
                 <h1>Timeline:</h1>
                 <div className='section-container'>
                     <div className='section'>
-                        <h3>Founding of Node Buster</h3>
-                        <p>Founded in 2021 by its founder, JonKali. The site was announced on the 17th of July and gained its first initial fans. Soon after began the search for a team and investors...</p>
+                        <h3>Idea behind Node Buster is Spawned</h3>
+                        <p>
+                            During one especially boring day in class, the initial idea for Node Buster
+                            was spawned, an online invite only, anonymous
+                            Crash Game. He began sketching the basis of the site and begins expanding
+                            on the initial idea.
+                        </p>
+                    </div>
+                </div>
+                <div className='section-container'>
+                    <div className='section'>
+                        <h3>Nodebuster.com is Launched!</h3>
+                        <p>
+                            On the 20th of July, 2021, nodebuster.com was launched and announced!
+                            The site had been in production for the past couple weeks, and
+                            although the site only included the text on the homepage, work on
+                            a prototype for the Crash Game was well underway.
+                        </p>
+                    </div>
+                </div>
+                <div className='section-container'>
+                    <div className='section'>
+                        <h3>Nodebuster begins the Search for Employees and Investors</h3>
+                        <p>
+                            With the site public and the idea fully developed,
+                            Node Buster began looking for the first employees to join Node Buster
+                            and help with the development  of the site. The search for initial funding
+                            also began.
+                        </p>
                     </div>
                 </div>
 

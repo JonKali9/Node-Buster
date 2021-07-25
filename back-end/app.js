@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // setup routers
-app.use('/mailing-list', mailinglist);
+app.use('/api/mailing-list', mailinglist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
