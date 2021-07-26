@@ -8,6 +8,7 @@ const cors = require('cors');
 
 // routes
 const mailinglist = require('./routes/mailing-list');
+const contactform = require('./routes/contact-form');
 
 // initial constiables
 const app = express();
@@ -23,6 +24,7 @@ app.use(cors());
 
 // setup routers
 app.use('/api/mailing-list', mailinglist);
+app.use('/api/contact-form', contactform);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

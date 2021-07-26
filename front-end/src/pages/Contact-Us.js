@@ -21,6 +21,27 @@ export default function ContactUs() {
         }
     }
 
+    const [user, setUser] = useState('');
+    const [content, setContent] = useState('');
+    const uploadContact = e => {
+        e.preventDefault();
+        if (content) {
+            fetch(`/api/contact-form/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user,
+                    content
+                })
+            })
+            .then(res => res.text())
+            .then(res => alert(res) ? null : window.location.reload())
+            .catch(err => alert(err) ? null : window.location.reload());
+        } else {
+            alert('Empty fields!')
+        }
+    }
+
     window.onscroll = () => {
         if (window.scrollY < 200) document.getElementById('navbar').style.top='0rem';
         else document.getElementById('navbar').style.top='-5rem';
@@ -51,11 +72,11 @@ export default function ContactUs() {
                     </div>
                 </div>
 
-                <form id='contact-form'>
+                <form onSubmit={uploadContact} id='contact-form'>
                     <h2>Contact Form</h2>
                     <div id='grid'>
-                        <input placeholder='Username/Email (optional)'  />
-                        <textarea placeholder='Message' />
+                        <input onChange={e => setUser(e.target.value)} placeholder='Username/Email (optional)'  />
+                        <textarea onChange={e => setContent(e.target.value)} placeholder='Message' />
                         <button>Submit</button>
                     </div>
                 </form>
