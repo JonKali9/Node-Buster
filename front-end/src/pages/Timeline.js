@@ -22,8 +22,7 @@ export default function Timeline() {
     }
 
     window.onscroll = () => {
-        let currentScrollPos = window.pageYOffset;
-        if (window.scrollY < 200) document.getElementById('navbar').style.top='0rem';
+        if (window.scrollY < 80) document.getElementById('navbar').style.top='0rem';
         else document.getElementById('navbar').style.top='-13rem';
     }
 

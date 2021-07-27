@@ -22,7 +22,6 @@ export default function Home() {
     }
 
     window.onscroll = () => {
-        let currentScrollPos = window.pageYOffset;
         if (window.scrollY < 200) document.getElementById('navbar').style.top='0rem';
         else document.getElementById('navbar').style.top='-13rem';
     }

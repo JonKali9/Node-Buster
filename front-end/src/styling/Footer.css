@@ -32,7 +32,17 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
+    #footer #left {
+        margin: 0;
+        text-align: center;
+        font-size: .9rem;
+    }
     #footer #right {
         justify-content: center;
+        margin: 0;
+    }
+    #footer .app-icon {
+        width: 2.5rem;
+        margin: .5rem .8rem;
     }
 }

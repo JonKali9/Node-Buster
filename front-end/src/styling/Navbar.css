@@ -42,12 +42,13 @@
     #navbar {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
+        font-size:.9rem;
     }
     #navbar #play-link {
         width: 90%;
         max-width: 100rem;
         grid-column: 3/5;
-        height: 1.2rem;
+        height: 1rem;
     }
     #navbar .navlink {
         margin-top: 0;
