@@ -25,7 +25,7 @@ export default function Play() {
     window.onscroll = () => {
         let currentScrollPos = window.pageYOffset;
         if (window.scrollY < 200) document.getElementById('navbar').style.top='0rem';
-        else document.getElementById('navbar').style.top='-5rem';
+        else document.getElementById('navbar').style.top='-10rem';
     }
 
     return (

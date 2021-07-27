@@ -72,10 +72,13 @@
 }
 #contact-us #contact-form #grid {
     margin: 0 auto;
-    width: 50%;
+    width: 40%;
     padding-bottom: 4rem;
     display: grid;
     grid-template-rows: 3rem auto 4rem;
+    grid-template-columns: 160%;
+    align-items: center;
+    justify-content: center;
     grid-row-gap: 1.5rem;
 }
 #contact-us #contact-form input, #contact-us #contact-form textarea {

@@ -4,19 +4,34 @@
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
+    min-height: 4rem;
 }
 #footer #left {
-    margin-left: 2rem;
+    margin-left: 2.75rem;
     text-align: left;
 }
 #footer #right {
     margin-right: 2rem;
     text-align: right;
+    display: flex; 
+    justify-content: right;
+    align-items: center;
 }
 #footer .app-icon {
-    width: 3.5rem;
+    width: 3rem;
     margin-left: 1rem;
 }
 #footer .app-icon:hover {
     cursor: pointer;
+}
+
+
+@media (orientation : portrait) {    
+    #footer {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    #footer #right {
+        justify-content: center;
+    }
 }

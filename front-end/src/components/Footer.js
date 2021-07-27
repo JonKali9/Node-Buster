@@ -1,6 +1,6 @@
 import React from 'react';
-import Twitter from '../images/twitter.png'
-import Discord from '../images/discord.png';
+import Twitter from '../images/twitter'
+import Discord from '../images/discord';
 
 export default function Footer() {
     return (

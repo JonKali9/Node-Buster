@@ -24,7 +24,7 @@ export default function Home() {
     window.onscroll = () => {
         let currentScrollPos = window.pageYOffset;
         if (window.scrollY < 200) document.getElementById('navbar').style.top='0rem';
-        else document.getElementById('navbar').style.top='-5rem';
+        else document.getElementById('navbar').style.top='-10rem';
     }
 
     return (
@@ -58,8 +58,8 @@ export default function Home() {
                     <div className='section'>
                         <h3>What is Node Buster?</h3>
                         <p>
-                            Node Buster is an online crypto gambling site, it incorporates elements of the popular Crash Game, (created and popularized by bustabit). W
-                            hich if you are unfamiliar with, is a type of game where you place a bet, watch is get multiplied by the second, and can withdraw your winning whenever you’d like. 
+                            Node Buster is an online crypto gambling site, it incorporates elements of the popular Crash Game, (created and popularized by bustabit).
+                            Which if you are unfamiliar with, is a type of game where you place a bet, watch is get multiplied by the second, and can withdraw your winning whenever you’d like. 
                             The game however can crash at any moment and you will lose your winnings. We do however, add a unique mix of exciting visuals and exclusivity by being invite only.
                         </p>
                     </div>
