@@ -20,6 +20,7 @@
 #footer .app-icon {
     width: 3rem;
     margin-left: 1rem;
+    margin-top: .5rem;
 }
 #footer .app-icon:hover {
     cursor: pointer;

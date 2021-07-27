@@ -14,7 +14,7 @@
 }
 
 #navbar .navlink {
-    margin-top: 1rem;
+    margin-top: .5rem;
     font-weight: 600;
     padding: 1rem 0;
     color: white;
@@ -45,7 +45,11 @@
     }
     #navbar #play-link {
         width: 90%;
-        max-width: 90rem;
+        max-width: 100rem;
         grid-column: 3/5;
+        height: 1.2rem;
+    }
+    #navbar .navlink {
+        margin-top: 0;
     }
 }
