@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../styling/Play.css'
-import Logo from '../images/logo.png';
+import Logo from '../images/logo';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Particles from 'react-particles-js';

@@ -4,6 +4,7 @@ import './styling/Navbar.css';
 import './styling/Footer.css';
 
 // Import Pages
+import Game from './game/Game';
 import Home from './pages/Home';
 import OurMission from './pages/Our-Mission';
 import ContactUs from "./pages/Contact-Us";
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+          <Route exact path='/game' component={Game} />
           <Route exact path='/' component={Home} />
           <Route exact path='/our-mission' component={OurMission} />
           <Route exact path='/contact-us' component={ContactUs} />

@@ -11,6 +11,7 @@ const rateLimit  = require('express-rate-limit');
 // routes
 const mailinglist = require('./routes/mailing-list');
 const contactform = require('./routes/contact-form');
+const game = require('./routes/game');
 
 // initial variables
 const app = express();
@@ -31,6 +32,7 @@ app.use(cors());
 app.use(helmet());
 
 // setup routers
+app.use('/api', game)
 app.use('/api/mailing-list', spamPrevention, mailinglist);
 app.use('/api/contact-form', spamPrevention, contactform);
 
