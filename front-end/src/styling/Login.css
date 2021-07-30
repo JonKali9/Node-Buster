@@ -1,0 +1,131 @@
+#login {
+    text-align: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #121212;
+    color: white;
+}
+
+#login #particles {
+    width: 100%;
+    height: 69vh;
+    position: absolute;
+}
+
+#login header {
+    background-image: linear-gradient(to bottom, rgb(28, 28, 31), rgba(255, 255, 255, 0));
+    width: 100%;
+    height: 60vh;
+    min-height: 18rem;
+    display: flex;
+    align-items: center;
+}
+#login #logo {
+    min-width: 20rem;
+    max-width: 35rem;
+    width: 50%;
+    margin: auto;
+}
+
+#login h1 {
+    font-size: 3rem;
+    text-decoration: underline;
+}
+#login #content {
+    padding-bottom: 10rem;
+    display: grid;
+    grid-row-gap: 5rem;
+}
+#login .section-container {
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    width: 90%;
+    border-radius: 2rem;
+}
+#login .section {
+    width: 80%;
+    max-width: 50rem;
+    padding: 3rem 0;
+    text-align: left;
+    margin-left: 10%;
+}
+#login .section h3 {
+    font-size: 1.8rem;
+}
+#login .section p {
+    font-size: 1.25rem;
+    color: #939393;
+}
+
+#login #content form {
+    width: 30rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background-color: #1e1e1e;
+    border-radius: 1rem;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 6rem 2rem 2rem 5rem;
+    align-items: center;
+    row-gap: 1rem;
+}
+#login #content form h1 {
+    grid-column: 1/3;
+}
+#login #content form label {
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: left;
+    margin-left: 2rem;
+    margin-right: 1rem;
+}
+#login #content form input {
+    background-color: #383838;
+    color: white;
+    width: 75%;
+    font-size: 1.25rem;
+    padding: .4rem 1rem;
+    border-radius: .4rem;
+    outline: none;
+}
+
+#login #content form button {
+    grid-column: 1/3;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    transition: background-color .4s;
+    font-size: 1.5rem;
+    padding: .7rem 2.5rem;
+    border: .15rem solid white;
+    border-radius: .6rem;
+    width: 20rem;
+    margin: 0 auto;
+}
+#login #content form button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #1e1e1e;
+    border: .15rem solid white;
+}
+#login #content form p {
+    grid-column: 1/3;
+}
+#login #content form p * {
+    color: rgb(255, 255, 255);
+}
+
+
+@media (orientation : portrait) {    
+    #login #logo {
+        width: 100%;
+        padding: 1.5rem;
+        min-width: 15rem;
+        max-width: 35rem;
+    }
+    #login #content form {
+        width: 85%;
+        max-width: 35rem;
+    }
+}

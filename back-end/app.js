@@ -12,6 +12,8 @@ const rateLimit  = require('express-rate-limit');
 const mailinglist = require('./routes/mailing-list');
 const contactform = require('./routes/contact-form');
 const game = require('./routes/game');
+const register = require('./routes/register');
+const login = require('./routes/login');
 
 // initial variables
 const app = express();
@@ -23,7 +25,7 @@ const spamPrevention = rateLimit({
 });
 
 // view engine setup
-app.use(logger('dev'));
+app.use(/^(?!.*(status|balance)).*$/, logger('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -35,6 +37,8 @@ app.use(helmet());
 app.use('/api', game)
 app.use('/api/mailing-list', spamPrevention, mailinglist);
 app.use('/api/contact-form', spamPrevention, contactform);
+app.use('/api/register', register);
+app.use('/api/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

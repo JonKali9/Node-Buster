@@ -1,21 +1,39 @@
 // Imports
 const express = require('express');
 const router = express.Router();
+const users = require('../database/users');
 
+// Get bust Value
+const getBust = () => {
+    return Math.random() * 2+1;
+}
 
 // Initial Variables
 let status = 'playing';
 let multiplier = (1).toFixed(2);
-let bustAt = Math.random() * 5+1;
+let bustAt = getBust();
 bustAt = bustAt.toFixed(2);
 let newGameIn = 0;
+let players = [];
+
+
+// Update balances
+const updateBalances = () => {
+    for (i=0; i<players.length; i++) {
+        players.splice(i, 1);
+    }
+}
 
 
 setInterval(() => {
     if (status === 'playing') {
         multiplier = (multiplier*1.0005);
         if (multiplier >= bustAt) {
+            console.log(`                                       Busted at ${bustAt}x!`)
+            console.log(`                                       ${players.length} players participated.`)
+            console.log(`                                       --------------------------`)
             status = 'crashed';
+            updateBalances();
             newGameIn = 300;
         };
     } else if (status === 'crashed') {
@@ -23,14 +41,16 @@ setInterval(() => {
         if (newGameIn < 0) {
             status = 'waiting';
             newGameIn = 1000;
+            console.log(`                                       New Game Starting in ${newGameIn/100} seconds.`)
         }
     } else if (status === 'waiting') {
         if (newGameIn > 0) {
             newGameIn -= 1;
         } else {
+            console.log(`                                       New Game Starting...`)
             status = 'playing';
             multiplier = (1).toFixed(2);
-            bustAt = Math.random() * 5+1;
+            bustAt = getBust();
             bustAt = bustAt.toFixed(2);
         }
     }
@@ -60,9 +80,44 @@ router.get('/status', (req, res) => {
     }
 });
 
-// Route to place a bet
-router.get('/place-bet', (req, res) => {
-    res.send('test');
+// Route to place bet
+router.post('/place-bet/:bet', (req, res) => {
+    const user = req.cookies.session;
+    users.takeFromBalance(user, req.params.bet);
+    players.push({
+        user,
+        bet: req.params.bet,
+        status: 'betting'
+    })
+    res.send('Ai!');
+});
+
+// Route to place bet
+router.post('/cancel-bet', (req, res) => {
+    const user = req.cookies.session;
+    const player = players.filter(player => player.user === user)[0];
+    users.addToBalance(user, Number(player.bet));
+    players = players.filter(player => player.user !== user);
+    res.send('Ai!');
+});
+
+// Route to place bet
+router.post('/cash-out', (req, res) => {
+    const user = req.cookies.session;
+    const player = players.filter(player => player.user === user)[0];
+    users.addToBalance(user, Number(player.bet*multiplier));
+    players = players.map(player => {
+        if (player.user === user) player.status = 'cashed out';
+        return player;
+    })
+    res.send('Ai!');
+});
+
+// Route to get user balance
+router.get('/balance', async (req, res) => {
+    const user = req.cookies.session;
+    const balance = await users.getBalance(user);
+    res.send(balance);
 });
 
 

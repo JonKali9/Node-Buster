@@ -3,6 +3,7 @@ import Logo from '../images/logo';
 import './Game.css';
 import Rocket from '../images/rocket';
 import Explosion from '../images/explosion';
+import { useCookies } from "react-cookie";
 
 export default function Game() {
     // Initial Variables
@@ -16,7 +17,24 @@ export default function Game() {
     const [cashedOut, setCashedOut] = useState(false);
 
     const [status, setStatus] = useState({});
-    const [balance, setBalance] = useState(50);
+    const [balance, setBalance] = useState(0);
+
+    const [cookies, setCookie] = useCookies();
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [loginRan, setLoginRan] = useState(false);
+
+    // Redirect if user is not logged in
+    if (cookies.session) {
+        if (!loginRan) {
+            setLoggedIn(true);
+            setLoginRan(true);
+        }
+    } else {
+        if (!loginRan) {
+            window.location.replace('/login');
+            setLoginRan(true);
+        }
+    }
 
     // Interval which checks game status
     useEffect(() => {
@@ -24,6 +42,9 @@ export default function Game() {
             fetch('/api/status')
             .then(res => res.json())
             .then(res => setStatus(res));
+            fetch('/api/balance')
+            .then(res => res.json())
+            .then(bal => setBalance(bal));
         }, 10)
 
         return () => clearInterval(timer);
@@ -52,23 +73,26 @@ export default function Game() {
     // Function to place bet
     const placeBet = () => {
         if (bet && bet > 0 && balance >= bet) {
-            setBalance(balance - Number(bet));
             setIsPlaying(true);
-            fetch('/api/place-bet');
+            fetch(`/api/place-bet/${bet}`, {
+                method: 'POST'
+            });
         }
     }
     // Function to cancel bet
     const cancelBet = () => {
-        setBalance(balance + Number(bet));
         setIsPlaying(false);
-        fetch('/api/cancel-bet');
+        fetch(`/api/cancel-bet/`, {
+            method: 'POST'
+        });
     }
     // Function to cash out
     const cashOut = () => {
-        setBalance(balance + Number(multipliedBet));
         setCashedOut(true);
         setIsPlaying(false);
-        fetch('/api/cash-out');
+        fetch(`/api/cash-out/`, {
+            method: 'POST'
+        });
     }
 
     // Updates the selection content
@@ -85,12 +109,17 @@ export default function Game() {
             setSelectionContent(<>
                 <h2>Voice Chat:</h2>
             </>)
+        } else if (selection === 'history') {
+            setSelectionContent(<>
+                <h2>History:</h2>
+            </>)
         }
     }, [selection]);
 
     //Actual Page
     return (
         <div id='game'>
+            {loggedIn ? <>
             {/* Header */}
             <header>
                 <div id='left'>
@@ -98,7 +127,7 @@ export default function Game() {
                 </div>
                 <div id='right'>
                     <p>Donated to Saving the Earth: $0</p>
-                    <p>Balance: ${balance.toFixed(2)}</p>
+                    <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
                 </div>
             </header>
             {/* Left */}            <div id='game-left'>
@@ -127,7 +156,7 @@ export default function Game() {
             </div>
             {/* Right */}      
             <div id='game-right'>
-                <div id='betting'>
+                <form id='betting' onSubmit={e => {e.preventDefault()}}>
                     {/* Bar */}      
                     <div id='bar'>
                         {status.status === 'waiting' ? <>
@@ -147,7 +176,7 @@ export default function Game() {
                         </> : <>
                             <input placeholder='Enter Bet' value={bet ? `$ ${multipliedBet}` : ''} readOnly />
                         </>}
-                        <p>{profit>=0 ? `+ $${profit.toFixed(2)}` : `- $${(-profit).toFixed(2)}`}</p>
+                        <p>{profit>=0 ? `+ $${profit.toLocaleString('en-US', {minimumFractionDigits: 2})}` : `- $${(-profit).toFixed(2)}`}</p>
                     </div>
                     {/* Button */}      
                     {status.status === 'waiting' ? <>
@@ -167,7 +196,7 @@ export default function Game() {
                             <button id='invisible'>Bet</button>
                         </>}
                     </>}
-                </div>
+                </form>
 
                 {/* Etc */}
                 <div id='etc'>
@@ -175,12 +204,18 @@ export default function Game() {
                         <h2 onClick={e => setSelection('stats')} >Stats</h2>
                         <h2 onClick={e => setSelection('chat')} >Chat</h2>
                         <h2 onClick={e => setSelection('vc')} >Voice Chat</h2>
+                        <h2 onClick={e => setSelection('history')} >History</h2>
                     </div>
-                    <div id='etc-main'>
-                        {selectionContent}
+                    <div id='etc-parent'>
+                        <div id='etc-body'>
+                            {selectionContent}
+                        </div>
                     </div>
                 </div>
             </div>
+            </> : <>
+                <h1 style={{color:'black'}}>Loading...</h1>
+            </>}
         </div>
     )
 }

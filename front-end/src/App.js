@@ -6,6 +6,8 @@ import './styling/Footer.css';
 // Import Pages
 import Game from './game/Game';
 import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from './pages/Login';
 import OurMission from './pages/Our-Mission';
 import ContactUs from "./pages/Contact-Us";
 import Timeline from './pages/Timeline';
@@ -19,6 +21,8 @@ function App() {
         <Switch>
           <Route exact path='/game' component={Game} />
           <Route exact path='/' component={Home} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
           <Route exact path='/our-mission' component={OurMission} />
           <Route exact path='/contact-us' component={ContactUs} />
           <Route exact path='/timeline' component={Timeline} />
