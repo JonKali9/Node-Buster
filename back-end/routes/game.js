@@ -29,9 +29,9 @@ setInterval(() => {
     if (status === 'playing') {
         multiplier = (multiplier*1.0005);
         if (multiplier >= bustAt) {
-            console.log(`                                       Busted at ${bustAt}x!`)
-            console.log(`                                       ${players.length} players participated.`)
-            console.log(`                                       --------------------------`)
+            //console.log(`                                       Busted at ${bustAt}x!`)
+            //console.log(`                                       ${players.length} players participated.`)
+            //console.log(`                                       --------------------------`)
             status = 'crashed';
             updateBalances();
             newGameIn = 300;
@@ -41,13 +41,13 @@ setInterval(() => {
         if (newGameIn < 0) {
             status = 'waiting';
             newGameIn = 1000;
-            console.log(`                                       New Game Starting in ${newGameIn/100} seconds.`)
+            //console.log(`                                       New Game Starting in ${newGameIn/100} seconds.`)
         }
     } else if (status === 'waiting') {
         if (newGameIn > 0) {
             newGameIn -= 1;
         } else {
-            console.log(`                                       New Game Starting...`)
+            //console.log(`                                       New Game Starting...`)
             status = 'playing';
             multiplier = (1).toFixed(2);
             bustAt = getBust();
@@ -82,35 +82,52 @@ router.get('/status', (req, res) => {
 
 // Route to place bet
 router.post('/place-bet/:bet', (req, res) => {
-    const user = req.cookies.session;
-    users.takeFromBalance(user, req.params.bet);
-    players.push({
-        user,
-        bet: req.params.bet,
-        status: 'betting'
-    })
-    res.send('Ai!');
+    if (status === 'waiting') {
+        const user = req.cookies.session;
+        const userBalance = users.getBalance(user);
+        if (userBalance >= req.params.bet) {
+            users.takeFromBalance(user, req.params.bet);
+            players.push({
+                user,
+                bet: req.params.bet,
+                status: 'betting'
+            })
+            res.send('Bet placed');
+        } else {
+            res.status(400).send('Could not place bet');
+        }
+    } else {
+        res.status(400).send('Could not place bet');
+    }
 });
 
-// Route to place bet
+// Route to cancel bet
 router.post('/cancel-bet', (req, res) => {
-    const user = req.cookies.session;
-    const player = players.filter(player => player.user === user)[0];
-    users.addToBalance(user, Number(player.bet));
-    players = players.filter(player => player.user !== user);
-    res.send('Ai!');
+    if (status === 'waiting') {
+        const user = req.cookies.session;
+        const player = players.filter(player => player.user === user)[0];
+        users.addToBalance(user, Number(player.bet));
+        players = players.filter(player => player.user !== user);
+        res.send('Bet cancelled');
+    } else {
+        res.status(400).send('Could not cancel bet');
+    }
 });
 
 // Route to place bet
 router.post('/cash-out', (req, res) => {
-    const user = req.cookies.session;
-    const player = players.filter(player => player.user === user)[0];
-    users.addToBalance(user, Number(player.bet*multiplier));
-    players = players.map(player => {
-        if (player.user === user) player.status = 'cashed out';
-        return player;
-    })
-    res.send('Ai!');
+    if (status === 'playing') {
+        const user = req.cookies.session;
+        const player = players.filter(player => player.user === user)[0];
+        users.addToBalance(user, Number(player.bet*multiplier));
+        players = players.map(player => {
+            if (player.user === user) player.status = 'cashed out';
+            return player;
+        })
+        res.send('Cash out');
+    } else {
+        res.status(400).send('Could not cash out');
+    }
 });
 
 // Route to get user balance
