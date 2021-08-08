@@ -3,13 +3,13 @@
     height: 100vh;
     display: grid;
     grid-template-rows: 5rem auto;
-    grid-template-columns: 23rem auto;
+    grid-template-columns: 20rem auto;
     color: white;
 }
 
 /* Header */
 #game header {
-    padding: 0 2rem;
+    padding: 0 1rem;
     grid-column: 1/3;
     background-color: #161616;
     color: white;
@@ -21,23 +21,24 @@
     text-align: right;
 }
 #game header #logo {
-    width: 100%;
+    width: 90%;
 }
 
 /* Left */
 #game #game-left {
     display: grid;
     grid-template-rows: auto 5rem;
-    border-right: .5rem solid #242424;
+    border-right: .25rem solid #242424;
 }
 #game #game-left #visuals {
     background-color: black;
 }
 #game #game-left #visuals h2 {
+    color: white;
     text-align: center;
-    position: relative;
+    position: absolute;
     top: 30%;
-    margin: 0 1rem;
+    width: 20rem;
 }
 #game #game-left #visuals img {
     height: 100%;
@@ -92,7 +93,7 @@
     border: .25rem solid white;
     color: white;
     font-size: 2.5rem;
-    padding: 1rem 7rem;
+    padding: 1rem 5rem;
     border-radius: .8rem;
 }
 #game #game-right #betting #visible:hover {
@@ -106,7 +107,7 @@
     border: .25rem solid rgb(90, 90, 90);
     color: rgb(121, 120, 120);
     font-size: 2.5rem;
-    padding: 1rem 7rem;
+    padding: 1rem 5rem;
     border-radius: .8rem;
 }
 

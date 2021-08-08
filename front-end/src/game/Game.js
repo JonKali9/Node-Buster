@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import Logo from '../images/logo';
 import './Game.css';
-import Rocket from '../images/rocket';
-import Explosion from '../images/explosion';
 import { useCookies } from "react-cookie";
+
+import Waiting from '../images/waiting';
+import Launch from '../images/launch';
+import Explosion from '../images/explosion';
 
 export default function Game() {
     // Initial Variables
@@ -133,13 +135,14 @@ export default function Game() {
             {/* Left */}            <div id='game-left'>
                 <div id='visuals'>
                     {status.status === 'waiting' ? <>
+                        <img src={Waiting} alt='Rocket Waiting' />
                         <h2>Game starting in {status.info} seconds.</h2>
                     </> : null}
                     {status.status === 'playing' ? <>
-                        <img src={Rocket} alt='Rocket Launch' />
+                        <img src={Launch} alt='Rocket Launch' />
                     </> : null}
                     {status.status === 'crashed' ? <>
-                        <img src={Explosion} alt='Rocket Launch' />
+                        <img src={Explosion} alt='Rocket Explosion' />
                     </> : null}
                 </div>
                 <div id='multiplier'>

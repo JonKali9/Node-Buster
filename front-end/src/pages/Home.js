@@ -65,6 +65,17 @@ export default function Home() {
                 </div>
                 <div className='section-container'>
                     <div className='section'>
+                        <h3>A Note on Gambling</h3>
+                        <p>
+                            Here at Nodebuster, our #1 priority is to provide users a fun and safe experience.
+                            Which is why we have chosen here to address the problem of Gambling addiction, a big problem in the gambling community.
+                            We wish to make clear we are not trying to cause any harm here, and encourage all users to not spend money which they can't afford to lose. <br />
+                            <a style={{color: 'white', top: '.4rem', position: 'relative'}} target='_blank' href='https://www.smartrecovery.org/gambling-addiction/' >If you or anyone you know is suffering from gambling addiction, there are many resources which we recommend.</a>
+                        </p>
+                    </div>
+                </div>
+                <div className='section-container'>
+                    <div className='section'>
                         <h3>How do I play?</h3>
                         <p>
                             If you are interested in participating in one of our games, you must first deposit crypto into your Node Buster account, we have attempted to make this as simple as possible. 
