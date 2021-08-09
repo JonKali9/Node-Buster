@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import '../styling/Play.css'
 import Logo from '../images/logo';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Particles from 'react-particles-js';
-import ParticlesConfig from '../particlesConfig';
+import Particle from '../components/Particle'
 
 export default function Play() {
     const [email, setEmail] = useState('');
@@ -23,21 +23,23 @@ export default function Play() {
     }
 
     window.onscroll = () => {
-        if (window.scrollY < 150) document.getElementById('navbar').style.top='0rem';
-        else document.getElementById('navbar').style.top='-13rem';
+        if (document.getElementById('navbar')) {
+            if (window.scrollY < 150) document.getElementById('navbar').style.top='0rem';
+            else document.getElementById('navbar').style.top='-13rem';
+        }
     }
 
     return (
         <div id='play'>
             <Navbar />
-            <Particles id='particles' params={ParticlesConfig} />
+            <Particle />
             <header id='particles-js'>
                 <img src={Logo} id='logo' alt='logo' />
             </header>
 
             <div id='content'>
                 <h1>COMING SOON</h1>
-                <h2>Node Buster is currently in production</h2>
+                <h2>Node Buster is currently in production. <br/>You can however try the demo <Link style={{color:'wheat'}} to='game'>here.</Link></h2>
 
                 <form onSubmit={addEmail} id='mailing'>
                     <h2>Interested in Joining?</h2>

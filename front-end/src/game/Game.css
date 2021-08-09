@@ -14,14 +14,20 @@
     background-color: #161616;
     color: white;
     display: grid;
-    grid-template-columns: 8.5rem auto;
+    grid-template-columns: 1fr 2fr;
     align-items: center;
 }
 #game header #right {
     text-align: right;
 }
+#game header #right #button {
+    text-decoration: underline;
+}
+#game header #right #button:hover {
+    cursor: pointer;
+}
 #game header #logo {
-    width: 90%;
+    width: 7rem;
 }
 
 /* Left */
@@ -109,50 +115,4 @@
     font-size: 2.5rem;
     padding: 1rem 5rem;
     border-radius: .8rem;
-}
-
-/* Bottom Right */
-#game #game-right #etc {
-    background-color: #242424;
-    display: grid;
-    grid-template-rows: 3rem auto;
-    align-items: center;
-}
-#game #game-right #etc #selection {
-    padding: 0 1.5rem;
-    display: grid;
-    grid-template-columns: 5rem 5rem 10rem 6.5rem auto;
-    grid-column-gap: 1rem;
-    z-index: 10;
-}
-#game #game-right #etc #selection h2 {
-    border-right: .15rem solid white;
-}
-#game #game-right #etc #selection h2:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-#game #game-right #etc #etc-parent {
-    background-color: #1e1e1e;
-    height: 100%;
-}
-#game #game-right #etc #etc-parent #etc-body {
-    padding: 1.5rem 1rem;
-}
-
-@media (orientation : portrait) {
-    #game #game-right #betting {
-        grid-row: 1/2;
-    }
-    #game #game-right #etc {
-        display: none;
-    }
-}
-@media (max-height: 800px) {
-    #game #game-right #betting {
-        grid-row: 1/2;
-    }
-    #game #game-right #etc {
-        display: none;
-    }
 }

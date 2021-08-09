@@ -68,7 +68,7 @@ router.get('/status', (req, res) => {
         case 'playing':
             res.json({
                 status: 'playing',
-                info: (multiplier).toFixed(2)
+                info: multiplier
             })
             break;
         case 'crashed':

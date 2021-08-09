@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import Logo from '../images/logo';
 import './Game.css';
 import { useCookies } from "react-cookie";
@@ -18,10 +19,11 @@ export default function Game() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [cashedOut, setCashedOut] = useState(false);
 
+    const [username, setUsername] = useState('');
     const [status, setStatus] = useState({});
     const [balance, setBalance] = useState(0);
 
-    const [cookies, setCookie] = useCookies();
+    const [cookies, setCookie, removeCookie] = useCookies();
     const [loggedIn, setLoggedIn] = useState(false);
     const [loginRan, setLoginRan] = useState(false);
 
@@ -30,6 +32,15 @@ export default function Game() {
         if (!loginRan) {
             setLoggedIn(true);
             setLoginRan(true);
+            fetch('/api/user')
+            .then(res => {
+                if (res.ok) return res.json()
+                else window.location.replace('/login')
+            })
+            .then(res => {
+                setUsername(res.username);
+            })
+
         }
     } else {
         if (!loginRan) {
@@ -121,14 +132,18 @@ export default function Game() {
     //Actual Page
     return (
         <div id='game'>
-            {loggedIn ? <>
+            {username ? <>
             {/* Header */}
             <header>
                 <div id='left'>
-                    <img id='logo' alt='logo' src={Logo} />
+                    <Link to='/play'><img id='logo' alt='logo' src={Logo} /></Link>
                 </div>
                 <div id='right'>
-                    <p>Donated to Saving the Earth: $0</p>
+                    {
+                        username ?
+                        <p>Logged In as <span>{username}</span>. <span id='button' onClick={()=>{removeCookie('session'); setUsername(''); window.location.replace('/login')}}>Log Out</span></p> :
+                        <p>You are currently Signed Out, <span id='button' onClick={()=>window.location.replace('/login')}>Log In</span>?</p>
+                    }
                     <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
                 </div>
             </header>
@@ -150,7 +165,7 @@ export default function Game() {
                         <h1>1.00x</h1>
                     </> : null}
                     {status.status === 'playing' ? <>
-                        <h1>{status.info}x</h1>
+                        <h1>{typeof(status.info)==='number' ? (status.info).toFixed(2) : status.info}x</h1>
                     </> : null}
                     {status.status === 'crashed' ? <>
                         <h1 style={{color:'rgb(199, 69, 69)'}}>Busted at {status.info}x</h1>
@@ -203,17 +218,7 @@ export default function Game() {
 
                 {/* Etc */}
                 <div id='etc'>
-                    <div id='selection'>
-                        <h2 onClick={e => setSelection('stats')} >Stats</h2>
-                        <h2 onClick={e => setSelection('chat')} >Chat</h2>
-                        <h2 onClick={e => setSelection('vc')} >Voice Chat</h2>
-                        <h2 onClick={e => setSelection('history')} >History</h2>
-                    </div>
-                    <div id='etc-parent'>
-                        <div id='etc-body'>
-                            {selectionContent}
-                        </div>
-                    </div>
+
                 </div>
             </div>
             </> : <>

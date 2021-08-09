@@ -93,11 +93,24 @@ const takeFromBalance = async (session, amount) => {
     })
 }
 
+
+// Get Public User Info
+const getPublicInfo = session => {
+    return new Promise((res, rej) => {
+        const query = `SELECT username FROM users WHERE BINARY sessionId = ?;`;
+        db.query(query, [session], (err, data) => {
+            if (err) rej('Could not get User');
+            res(data);
+        })
+    })
+}
+
 module.exports = {
     register,
     login,
     updateSession,
     getBalance,
     addToBalance,
-    takeFromBalance
+    takeFromBalance,
+    getPublicInfo
 }

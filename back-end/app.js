@@ -14,6 +14,7 @@ const contactform = require('./routes/contact-form');
 const game = require('./routes/game');
 const register = require('./routes/register');
 const login = require('./routes/login');
+const user = require('./routes/user');
 
 // initial variables
 const app = express();
@@ -39,6 +40,7 @@ app.use('/api/mailing-list', spamPrevention, mailinglist);
 app.use('/api/contact-form', spamPrevention, contactform);
 app.use('/api/register', register);
 app.use('/api/login', login);
+app.use('/api/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

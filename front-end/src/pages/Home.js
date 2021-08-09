@@ -65,7 +65,7 @@ export default function Home() {
                 </div>
                 <div className='section-container'>
                     <div className='section'>
-                        <h3>A Note on Gambling</h3>
+                        <h3>A Note on Gambling Addiction</h3>
                         <p>
                             Here at Nodebuster, our #1 priority is to provide users a fun and safe experience.
                             Which is why we have chosen here to address the problem of Gambling addiction, a big problem in the gambling community.
