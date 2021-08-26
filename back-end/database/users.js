@@ -17,8 +17,10 @@ const register = async ( username, email, password ) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
     return new Promise((res, rej) => {
-        const query = `INSERT INTO users (username, email, password, sessionId, balance) VALUES (?, ?, ?, ?, 20);`;
-        db.query(query, [username, email, hash, generateSecret(18)], (err, data) => {
+        const d = new Date();
+        const date = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+        const query = `INSERT INTO users (username, email, password, sessionId, balance, lastPlayed) VALUES (?, ?, ?, ?, 25, ?);`;
+        db.query(query, [username, email, hash, generateSecret(18), date], (err, data) => {
             if (err) rej('Could not create Account');
             res('Account Created!');
         })
@@ -28,7 +30,7 @@ const register = async ( username, email, password ) => {
 // Login User
 const login = async ( username, password ) => {
     return new Promise((res, rej) => {
-        const query = `SELECT * FROM users WHERE BINARY username = ?;`;
+        const query = `SELECT * FROM users WHERE username = ?;`;
         db.query(query, [username], async (err, data) => {
             if (err) rej('Error');
             if (data[0]) {
@@ -93,6 +95,20 @@ const takeFromBalance = async (session, amount) => {
     })
 }
 
+// Update last Played
+const updateLastPlayed = async (session) => {
+    return new Promise(async (res, rej) => {
+        const d = new Date();
+        const date = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+        const query = `UPDATE users SET lastPlayed = ? WHERE BINARY sessionId = ?;`;
+        db.query(query, [date, session], (err, data) => {
+            if (err) rej('Could not take from balance');
+            res('Updated last Played!');
+        })
+    })
+}
+
+
 
 // Get Public User Info
 const getPublicInfo = session => {
@@ -105,6 +121,18 @@ const getPublicInfo = session => {
     })
 }
 
+
+// Get all User info
+const getUsers = () => {
+    return new Promise((res, rej) => {
+        const query = `SELECT * FROM users;`;
+        db.query(query, (err, data) => {
+            if (err) rej('Error');
+            res(data);
+        })
+    })
+}
+
 module.exports = {
     register,
     login,
@@ -112,5 +140,7 @@ module.exports = {
     getBalance,
     addToBalance,
     takeFromBalance,
-    getPublicInfo
+    updateLastPlayed,
+    getPublicInfo,
+    getUsers
 }

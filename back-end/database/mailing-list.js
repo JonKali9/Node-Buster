@@ -1,6 +1,6 @@
 const db = require('./db');
 
-//Add a Post
+//Add an Email
 const addEmail = ( email ) => {
     return new Promise((res, rej) => {
         const query = `INSERT INTO emails VALUES (?)`;
@@ -11,6 +11,18 @@ const addEmail = ( email ) => {
     })
 }
 
+//Get all Emails
+const getEmails = ( email ) => {
+    return new Promise((res, rej) => {
+        const query = `SELECT * FROM emails;`;
+        db.query(query, [email], (err, data) => {
+            if (err) rej(err);
+            res(data);
+        });
+    })
+}
+
 module.exports = {
-    addEmail
+    addEmail,
+    getEmails
 }

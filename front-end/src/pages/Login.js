@@ -36,7 +36,7 @@ export default function Login() {
             })
             .then(res => {
                 alert(res.text);
-                if (res.status === 200) window.location.replace('/game');
+                if (res.status === 200) window.location.replace('/demo');
             });
         } else {
             alert('Please answer all fields')

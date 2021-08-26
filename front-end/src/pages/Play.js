@@ -39,7 +39,7 @@ export default function Play() {
 
             <div id='content'>
                 <h1>COMING SOON</h1>
-                <h2>Node Buster is currently in production. <br/>You can however try the demo <Link style={{color:'wheat'}} to='game'>here.</Link></h2>
+                <h2>Node Buster is currently in production. <br/>You can however try the demo <Link style={{color:'wheat'}} to='/demo'>here.</Link></h2>
 
                 <form onSubmit={addEmail} id='mailing'>
                     <h2>Interested in Joining?</h2>

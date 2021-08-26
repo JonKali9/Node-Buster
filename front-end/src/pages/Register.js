@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
 import '../styling/Register.css'
 import Logo from '../images/logo';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Particle from '../components/Particle'
 
-export default function Register() {
+export default function Register(props) {
     window.onscroll = () => {
         if (window.scrollY < 80) document.getElementById('navbar').style.top='0rem';
         else document.getElementById('navbar').style.top='-13rem';
@@ -16,6 +16,10 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [invite, setInvite] = useState('');
+
+    useEffect(() => {
+        if (props.match.params.invite) setInvite(props.match.params.invite);
+    }, [])
 
     const register = e => {
         e.preventDefault();
@@ -65,7 +69,11 @@ export default function Register() {
                     <label>Password:</label>
                     <input onChange={e => {setPassword(e.target.value)}} type='password' />
                     <label>Invite Key:</label>
-                    <input onChange={e => {setInvite(e.target.value)}} />
+                    {
+                        props.match.params.invite ?
+                        <input value={props.match.params.invite} disabled /> :
+                        <input onChange={e => {setInvite(e.target.value)}} /> 
+                    }
                     <button>Register</button>
                     <p>Already got an account? <Link to='/login'>Login</Link>.</p>
                 </form>

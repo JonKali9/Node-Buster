@@ -12,4 +12,15 @@ router.get('/', function(req, res) {
   .catch(err => res.status(400).send('Could not find Account'))
 });
 
+router.get('/isAdmin', (req, res) => {
+  user.getPublicInfo(req.cookies.session)
+  .then(resp => {
+    if (resp[0].username === 'admin') res.sendStatus(200)
+    else res.sendStatus(400);
+  })
+  .catch(err => {
+    res.sendStatus(400);
+  })
+})
+
 module.exports = router;

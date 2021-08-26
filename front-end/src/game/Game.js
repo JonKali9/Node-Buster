@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import Logo from '../images/logo';
 import './Game.css';
 import { useCookies } from "react-cookie";
+import {isMobile} from 'react-device-detect';
 
 import Waiting from '../images/waiting';
 import Launch from '../images/launch';
@@ -10,9 +11,6 @@ import Explosion from '../images/explosion';
 
 export default function Game() {
     // Initial Variables
-    const [selection, setSelection] = useState('');
-    const [selectionContent, setSelectionContent] = useState(null);
-
     const [bet, setBet] = useState('');
     const [multipliedBet, setMultipliedBet] = useState('');
     const [profit, setProfit] = useState(0);
@@ -26,6 +24,20 @@ export default function Game() {
     const [cookies, setCookie, removeCookie] = useCookies();
     const [loggedIn, setLoggedIn] = useState(false);
     const [loginRan, setLoginRan] = useState(false);
+
+    const [messages, setMessages] = useState([
+        {
+            author: 'System',
+            content: 'Chat feature is currently in development, and is not available at the moment.'
+        }
+    ]);
+    const [messageContent, setMessageContent] = useState('');
+
+    // Update Messages
+    useEffect(() => {
+        const element = document.getElementById('messages')
+        if (element) element.scrollTop = element.scrollHeight - element.clientHeight;
+    }, [messages])
 
     // Redirect if user is not logged in
     if (cookies.session) {
@@ -62,6 +74,7 @@ export default function Game() {
 
         return () => clearInterval(timer);
     });
+
     // Updates game info
     useEffect(() => {
         if (status.status === 'playing') {
@@ -107,123 +120,126 @@ export default function Game() {
             method: 'POST'
         });
     }
-
-    // Updates the selection content
-    useEffect(() => {
-        if (selection === 'stats') {
-            setSelectionContent(<>
-                <h2>Stats:</h2>
-            </>)
-        } else if (selection === 'chat') {
-            setSelectionContent(<>
-                <h2>Chat:</h2>
-            </>)
-        } else if (selection === 'vc') {
-            setSelectionContent(<>
-                <h2>Voice Chat:</h2>
-            </>)
-        } else if (selection === 'history') {
-            setSelectionContent(<>
-                <h2>History:</h2>
-            </>)
-        }
-    }, [selection]);
-
+    
     //Actual Page
     return (
         <div id='game'>
-            {username ? <>
-            {/* Header */}
-            <header>
-                <div id='left'>
-                    <Link to='/play'><img id='logo' alt='logo' src={Logo} /></Link>
-                </div>
-                <div id='right'>
-                    {
-                        username ?
-                        <p>Logged In as <span>{username}</span>. <span id='button' onClick={()=>{removeCookie('session'); setUsername(''); window.location.replace('/login')}}>Log Out</span></p> :
-                        <p>You are currently Signed Out, <span id='button' onClick={()=>window.location.replace('/login')}>Log In</span>?</p>
-                    }
-                    <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
-                </div>
-            </header>
-            {/* Left */}            <div id='game-left'>
-                <div id='visuals'>
-                    {status.status === 'waiting' ? <>
-                        <img src={Waiting} alt='Rocket Waiting' />
-                        <h2>Game starting in {status.info} seconds.</h2>
-                    </> : null}
-                    {status.status === 'playing' ? <>
-                        <img src={Launch} alt='Rocket Launch' />
-                    </> : null}
-                    {status.status === 'crashed' ? <>
-                        <img src={Explosion} alt='Rocket Explosion' />
-                    </> : null}
-                </div>
-                <div id='multiplier'>
-                    {status.status === 'waiting' ? <>
-                        <h1>1.00x</h1>
-                    </> : null}
-                    {status.status === 'playing' ? <>
-                        <h1>{typeof(status.info)==='number' ? (status.info).toFixed(2) : status.info}x</h1>
-                    </> : null}
-                    {status.status === 'crashed' ? <>
-                        <h1 style={{color:'rgb(199, 69, 69)'}}>Busted at {status.info}x</h1>
-                    </> : null}
-                </div>
-            </div>
-            {/* Right */}      
-            <div id='game-right'>
-                <form id='betting' onSubmit={e => {e.preventDefault()}}>
-                    {/* Bar */}      
-                    <div id='bar'>
-                        {status.status === 'waiting' ? <>
-                            <input placeholder='Enter Bet' value={bet ? `$ ${bet}` : ''} onKeyDown={e => {
-                                if (bet.length < 8) {
-                                    if ('0123456789'.includes(e.key)) {
-                                        if (bet.includes('.')) {
-                                            const decimals = bet.slice(bet.lastIndexOf('.')+1, bet.length).length;
-                                            if (decimals < 2) setBet(bet + e.key);
-                                        } else  setBet(bet + e.key);
-                                    } else if (e.key === '.' || e.key === ',') {
-                                        if (!bet.includes('.')) setBet(bet+'.');
-                                    }
-                                }
-                                if (e.key === 'Backspace') setBet(bet.substring(0,bet.length-1));
-                            }} />
-                        </> : <>
-                            <input placeholder='Enter Bet' value={bet ? `$ ${multipliedBet}` : ''} readOnly />
-                        </>}
-                        <p>{profit>=0 ? `+ $${profit.toLocaleString('en-US', {minimumFractionDigits: 2})}` : `- $${(-profit).toFixed(2)}`}</p>
-                    </div>
-                    {/* Button */}      
-                    {status.status === 'waiting' ? <>
-                        {isPlaying ? <>
-                            <button id='visible' onClick={cancelBet}>Cancel Bet</button>
-                        </> : <>
-                            <button id='visible' onClick={placeBet}>Bet</button>
-                        </>}
-                    </> : <>
-                        {isPlaying ? <>
+            {
+                isMobile ? <>
+                    <h1>Node Buster is not available on Mobile.</h1>
+                    <h1>An App is however currently in development.</h1>
+                </> : <>
+                    {username ? <>
+                    {/* Header */}
+                    <header>
+                        <div id='left'>
+                            <Link to='/play'><img id='logo' alt='logo' src={Logo} /></Link>
+                        </div>
+                        <div id='right'>
+                            <p>Welcome, <span>{username}</span>. <span id='button' onClick={()=>{removeCookie('session'); setUsername(''); window.location.replace('/login')}}>Log Out</span></p>
+                            <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
+                        </div>
+                    </header>
+                    {/* Left */}            
+                    <div id='game-left'>
+                        <div id='visuals'>
+                            {status.status === 'waiting' ? <>
+                                <img src={Waiting} alt='Rocket Waiting' />
+                                <h2>Game starting in {status.info} seconds.</h2>
+                            </> : null}
+                            {status.status === 'playing' ? <>
+                                <img src={Launch} alt='Rocket Launch' />
+                            </> : null}
                             {status.status === 'crashed' ? <>
-                                <button id='invisible'>Bet</button>
+                                <img src={Explosion} alt='Rocket Explosion' />
+                            </> : null}
+                        </div>
+                        <div id='multiplier'>
+                            {status.status === 'waiting' ? <>
+                                <h1>1.00x</h1>
+                            </> : null}
+                            {status.status === 'playing' ? <>
+                                <h1>{typeof(status.info)==='number' ? (status.info).toFixed(2) : status.info}x</h1>
+                            </> : null}
+                            {status.status === 'crashed' ? <>
+                                <h1 style={{color:'rgb(199, 69, 69)'}}>Busted at {status.info}x</h1>
+                            </> : null}
+                        </div>
+                    </div>
+                    {/* Right */}      
+                    <div id='game-right'>
+                        {/*Betting*/}
+                        <form id='betting' onSubmit={e => {e.preventDefault()}}>
+                            {/* Bar */}      
+                            <div id='bar'>
+                                {status.status === 'waiting' ? <>
+                                    <input placeholder='Enter Bet' value={bet ? `$ ${bet}` : ''} onKeyDown={e => {
+                                        if (bet.length < 8 && status.status === 'waiting') {
+                                            if ('0123456789'.includes(e.key)) {
+                                                if (bet.includes('.')) {
+                                                    const decimals = bet.slice(bet.lastIndexOf('.')+1, bet.length).length;
+                                                    if (decimals < 2) setBet(bet + e.key);
+                                                } else  setBet(bet + e.key);
+                                            } else if (e.key === '.' || e.key === ',') {
+                                                if (!bet.includes('.')) setBet(bet+'.');
+                                            }
+                                        }
+                                        if (e.key === 'Backspace') setBet(bet.substring(0,bet.length-1));
+                                    }} />
+                                </> : <>
+                                    <input placeholder='Enter Bet' value={bet ? `$ ${multipliedBet}` : ''} readOnly />
+                                </>}
+                                <p>{profit>=0 ? `+ $${(profit).toFixed(2)}` : `- $${(-profit).toFixed(2)}`}</p>
+                            </div>
+                            {/* Button */}      
+                            {status.status === 'waiting' ? <>
+                                {isPlaying ? <>
+                                    <button id='visible' onClick={cancelBet}>Cancel Bet</button>
+                                </> : <>
+                                    <button id='visible' onClick={placeBet}>Bet</button>
+                                </>}
                             </> : <>
-                                <button id='visible' onClick={cashOut}>Cash Out</button>
+                                {isPlaying ? <>
+                                    {status.status === 'crashed' ? <>
+                                        <button id='invisible'>Bet</button>
+                                    </> : <>
+                                        <button id='visible' onClick={cashOut}>Cash Out</button>
+                                    </>}
+                                </> : <>
+                                    <button id='invisible'>Bet</button>
+                                </>}
                             </>}
-                        </> : <>
-                            <button id='invisible'>Bet</button>
-                        </>}
+                        </form>
+                        {/* Etc */}
+                        <div id='etc'>
+                            <h1>Chat</h1>
+                            <div id='messages'>
+                                {
+                                    messages.map(message => {
+                                        return <div className='message'>
+                                            <p className='author'>{message.author}</p>
+                                            <p className='content'>{message.content}</p>
+                                        </div>
+                                    })
+                                }
+                            </div>
+                            <form id='send-message' onSubmit={e => {
+                                e.preventDefault();
+                                setMessages([...messages, {
+                                    author: username,
+                                    content: messageContent
+                                }]);
+                            }}>
+                                <textarea onChange={e => {setMessageContent(e.target.value)}} placeholder='Type Message...' />
+                                <button>Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                    </> : <>
+                        <h1 style={{color:'black'}}>Loading...</h1>
                     </>}
-                </form>
-
-                {/* Etc */}
-                <div id='etc'>
-
-                </div>
-            </div>
-            </> : <>
-                <h1 style={{color:'black'}}>Loading...</h1>
-            </>}
+                </>
+            }
         </div>
     )
 }

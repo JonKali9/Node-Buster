@@ -15,6 +15,10 @@ const game = require('./routes/game');
 const register = require('./routes/register');
 const login = require('./routes/login');
 const user = require('./routes/user');
+const mail = require('./routes/mail');
+const users = require('./routes/admin/users');
+const invites = require('./routes/admin/invites')
+const games = require('./routes/admin/games');
 
 // initial variables
 const app = express();
@@ -41,6 +45,11 @@ app.use('/api/contact-form', spamPrevention, contactform);
 app.use('/api/register', register);
 app.use('/api/login', login);
 app.use('/api/user', user);
+// admin routers
+app.use('/api/users', users);
+app.use('/api/invites', invites);
+app.use('/api/mail', mail);
+app.use('/api/games', games);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
