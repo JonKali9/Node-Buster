@@ -71,7 +71,7 @@ export default function Timeline() {
                 </div>
 
                 <form onSubmit={addEmail} id='mailing'>
-                    <h2>Interested in Joining?</h2>
+                    <h2>Want to keep updated?</h2>
                     <p>Join our mailing list!</p>
                     <input placeholder='Enter Email' onChange={e => setEmail(e.target.value)} /> <br />
                     <button>Submit</button>

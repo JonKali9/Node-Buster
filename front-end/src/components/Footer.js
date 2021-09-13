@@ -1,5 +1,6 @@
 import React from 'react';
-import Twitter from '../images/twitter'
+import Twitter from '../images/twitter';
+import Instagram from '../images/instagram';
 import Discord from '../images/discord';
 
 export default function Footer() {
@@ -11,6 +12,7 @@ export default function Footer() {
             <div id='right'>
                 <img src={Discord} className='app-icon' alt='twitter' onClick={() => window.open('https://discord.gg/P6cNWQScyH', '_blank')} />
                 <img src={Twitter} className='app-icon' alt='twitter' onClick={() => window.open('https://twitter.com/Node_Buster', '_blank')} />
+                <img src={Instagram} className='app-icon' alt='twitter' onClick={() => window.open('https://instagram.com/nodebuster/', '_blank')} />
             </div>
         </footer>
     )

@@ -47,7 +47,7 @@ const gameStats = () => {
         gameProfit
     }
     // Place data into database
-    games.addGame(gameData);
+    // games.addGame(gameData);
 }
 
 // Runs the Game

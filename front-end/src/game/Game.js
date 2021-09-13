@@ -4,6 +4,7 @@ import Logo from '../images/logo';
 import './Game.css';
 import { useCookies } from "react-cookie";
 import {isMobile} from 'react-device-detect';
+import Arrow from '../images/arrow';
 
 import Waiting from '../images/waiting';
 import Launch from '../images/launch';
@@ -16,6 +17,8 @@ export default function Game() {
     const [profit, setProfit] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [cashedOut, setCashedOut] = useState(false);
+
+    const [sidebarOpen, setSidebarOpen] = useState(true);
 
     const [username, setUsername] = useState('');
     const [status, setStatus] = useState({});
@@ -133,11 +136,22 @@ export default function Game() {
                     {/* Header */}
                     <header>
                         <div id='left'>
-                            <Link to='/play'><img id='logo' alt='logo' src={Logo} /></Link>
+                            <Link to='/'><img id='logo' alt='logo' src={Logo} /></Link>
                         </div>
-                        <div id='right'>
-                            <p>Welcome, <span>{username}</span>. <span id='button' onClick={()=>{removeCookie('session'); setUsername(''); window.location.replace('/login')}}>Log Out</span></p>
-                            <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
+                        <div id='right' style={window.innerWidth >= 1000 ? {'gridTemplateColumns':'1fr 3rem'} : {'gridTemplateColumns':'1fr'}}>
+                            <div>
+                                <p>Welcome, <span>{username}</span>. <span id='button' onClick={()=>{removeCookie('session'); setUsername(''); window.location.replace('/login')}}>Log Out</span></p>
+                                <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
+                            </div>
+                            { window.innerWidth >= 1000 ?
+                                <div>
+                                    {
+                                        sidebarOpen ?
+                                        <img src={Arrow} onClick={()=>{setSidebarOpen(!sidebarOpen)}} style={{rotate:'-90deg'}} /> :
+                                        <img src={Arrow} onClick={()=>{setSidebarOpen(!sidebarOpen)}} style={{rotate:'90deg'}} />
+                                    }
+                                </div> : null
+                            }
                         </div>
                     </header>
                     {/* Left */}            
@@ -167,7 +181,7 @@ export default function Game() {
                         </div>
                     </div>
                     {/* Right */}      
-                    <div id='game-right'>
+                    <div id='game-right' style={!sidebarOpen ? {gridTemplateColumns:'auto'} : null}>
                         {/*Betting*/}
                         <form id='betting' onSubmit={e => {e.preventDefault()}}>
                             {/* Bar */}      
@@ -211,7 +225,7 @@ export default function Game() {
                             </>}
                         </form>
                         {/* Etc */}
-                        <div id='etc'>
+                        <div id='etc' style={!sidebarOpen ? {display:'none'} : null}>
                             <h1>Chat</h1>
                             <div id='messages'>
                                 {
@@ -224,13 +238,14 @@ export default function Game() {
                                 }
                             </div>
                             <form id='send-message' onSubmit={e => {
+                                setMessageContent('')
                                 e.preventDefault();
                                 setMessages([...messages, {
                                     author: username,
                                     content: messageContent
                                 }]);
                             }}>
-                                <textarea onChange={e => {setMessageContent(e.target.value)}} placeholder='Type Message...' />
+                                <textarea value={messageContent} onChange={e => {setMessageContent(e.target.value)}} placeholder='Type Message...' />
                                 <button>Send Message</button>
                             </form>
                         </div>

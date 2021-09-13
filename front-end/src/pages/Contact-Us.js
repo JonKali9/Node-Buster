@@ -6,21 +6,6 @@ import Footer from '../components/Footer';
 import Particle from '../components/Particle'
 
 export default function ContactUs() {
-    const [email, setEmail] = useState('');
-    const addEmail = e => {
-        e.preventDefault();
-        if (email.includes('@')) {
-            fetch(`/api/mailing-list/${email}`, {
-                method: 'POST'
-            })
-            .then(res => res.text())
-            .then(res => alert(res) ? null : window.location.reload())
-            .catch(err => alert(err) ? null : window.location.reload());
-        } else {
-            alert('Invalid email!')
-        }
-    }
-
     const [user, setUser] = useState('');
     const [content, setContent] = useState('');
     const uploadContact = e => {
@@ -61,13 +46,12 @@ export default function ContactUs() {
                     <div className='section'>
                         <h3>Interested in Contacting Us?</h3>
                         <p>
-                            Well you're in luck, we see communication with
-                            our users as a key priority, and have hence setup
-                            several different ways for you to contact us.
-                            We have a twitter and a discord where we interact with our users,
-                            as well as an email if you wish to be professional.
-                            We also have a contact form if you wish for anonoymous communiction.
-                            Whatever the case, we'll be happy to hear from you.
+                            We believe that sites should prioritize communication with users,
+                            which is why we have setup several ways in which you may contact us!
+                            Below you may find an anonymous form, which will allow you to send us a message. <br/>
+                            You may also send us an email at nodebuster@gmail.com, as well as DM us on of our socials,
+                            and even chat with us on Discord! Links can be found at the bottom of the page!
+                            We hope to hear from you!
                         </p>
                     </div>
                 </div>
@@ -79,13 +63,6 @@ export default function ContactUs() {
                         <textarea onChange={e => setContent(e.target.value)} placeholder='Message' />
                         <button>Submit</button>
                     </div>
-                </form>
-
-                <form onSubmit={addEmail} id='mailing'>
-                    <h2>Interested in Joining?</h2>
-                    <p>Join our mailing list!</p>
-                    <input placeholder='Enter Email' onChange={e => setEmail(e.target.value)} /> <br />
-                    <button>Submit</button>
                 </form>
             </div>
             <Footer />

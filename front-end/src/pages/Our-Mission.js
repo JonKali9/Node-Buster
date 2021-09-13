@@ -40,8 +40,8 @@ export default function OurMission() {
                     <div className='section'>
                         <h3>Node Buster's Mission</h3>
                         <p>
-                            Our mission here at Node Buster is to provide you, the user, the exclusive and prestigious playing experience you deserve. 
-                            Being an invite only platform allows us to cater to our already existing users, and make sure they have an optimal playing experience.
+                            Our mission here at Node Buster is to provide you, the user, the exclusive and prestigious playing experience you deserve. <br/>
+                            Being an invite only platform allows us to cater to our userbase, allowing us to make sure they have an optimal playing experience.
                         </p>
                     </div>
                 </div>
@@ -49,49 +49,49 @@ export default function OurMission() {
                     <div className='section'>
                         <h3>Our Values</h3>
                         <p>
-                            Here at Node Buster we have three core values. <br />
-                            - Web3 and the Decentralized Web. <br />
-                            - Privacy on the Web. <br />
-                            - Investing in Renewable Energy for the planet. <br />
+                            Here at Node Buster we have three core values, which are the heart of our company and platform: <br />
+                            - Renewable Energy, and fighting Climate Change<br />
+                            - Privacy on the Web<br />
+                            - Web 3.0 and Decentralization<br />
                         </p>
                     </div>
                 </div>
                 <div className='section-container'>
                     <div className='section'>
-                        <h3>Web3 and the Decentralized Web</h3>
+                        <h3>Fighting Climate Change</h3>
                         <p>
-                            Anyone who has been on the web long enough will know just how much it has evolved. 
-                            From the first iteration of the statuc web, to the more modern and resposive web2, and finally to the optimal web3 which encourages Decentralization.
-                            Node Buster is an active participant of web3 and will do all it can to support it.
+                            The Earth is our planet, that applies to each and every one of us. <br/>
+                            We wish to help fight the current climate crisis, by donating the money users lose to a good cause.
+                            We hope we can truly make a difference, and maybe even change the stigma surrounding the gambling community!
                         </p>
                     </div>
                 </div>
                 <div className='section-container'>
                     <div className='section'>
-                        <h3>Online Privacy</h3>
+                        <h3>Privacy on the Web</h3>
                         <p>
-                            Many of you will consider privacy on the web to be human right, well here at Node Buster we agree.
-                            Which is why we promise to keep 0 logs of user activity, any and all data stored will be anonymous,
-                            and only stored if it is essential. Meaning that logs of games will be stored, and how many users participated,
-                            but who participated, when they participated will never be logged.
-                            That is a Node Buster guarantee.
+                            Many of you will consider privacy to be human right, and we agree! <br/>
+                            In a technological age, it is crucial for privacy to be protected online!
+                            Which is why we promise to keep 0 logs of individual user activity, with any and all data stored being anonymous.
+                            That is a Node Buster guarantee!
                         </p>
                     </div>
                 </div>
                 <div className='section-container'>
                     <div className='section'>
-                        <h3>Renewable Energy</h3>
+                        <h3>Web 3.0 and Decentralization</h3>
                         <p>
-                            The Earth is our planet, that applies to each and every one of us.
-                            Which is why establishing an economically viable alternative to the destructive energy production we use today is so criticial to our survival.
-                            Node Buster will do whatever is can to support the innovation of Renewable Energy and will give
-                            users an option to donate a percentage of their winnings to this goal too.
+                            A relatively new concept which gives back power to the people. <br/>
+                            Web 3.0 and blockchain technology would give people full access to their wealth and finances,
+                            by stopping governments from having control over banking.
+                            It is something that the Node Buster team very much supports and believes in, and
+                            is willing to do whatever it can to support the concept.
                         </p>
                     </div>
                 </div>
 
                 <form onSubmit={addEmail} id='mailing'>
-                    <h2>Interested in Joining?</h2>
+                    <h2>Want to keep updated?</h2>
                     <p>Join our mailing list!</p>
                     <input placeholder='Enter Email' onChange={e => setEmail(e.target.value)} /> <br />
                     <button>Submit</button>

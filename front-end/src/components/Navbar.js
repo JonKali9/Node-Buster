@@ -7,7 +7,6 @@ export default function Navbar() {
             <Link className='navlink' to='/'>Home</Link>
             <Link className='navlink' to='/our-mission'>Our mission</Link>
             <Link className='navlink' to='/contact-us'>Contact us</Link>
-            <Link className='navlink' to='/timeline'>Timeline</Link>
             <Link id='play-link' className='navlink' to='/play'>Play!</Link>
         </div>
     )

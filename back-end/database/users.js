@@ -49,7 +49,7 @@ const login = async ( username, password ) => {
 const updateSession = username => {
     const session = generateSecret(18);
     return new Promise((res, rej) => {
-        const query = `UPDATE users SET sessionId = ? WHERE BINARY username = ?;`;
+        const query = `UPDATE users SET sessionId = ? WHERE username = ?;`;
         db.query(query, [session, username], (err, data) => {
             if (err) rej('Could not update session');
             res(session);

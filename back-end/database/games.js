@@ -14,7 +14,7 @@ const addGame = ( gameData ) => {
 //Get Games
 const getGames = ( gameData ) => {
     return new Promise((res, rej) => {
-        const query = `SELECT * FROM games;`;
+        const query = `SELECT * FROM games ORDER BY id DESC LIMIT 100;`;
         db.query(query, (err, data) => {
             if (err) rej(err);
             res(data);

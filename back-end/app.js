@@ -41,7 +41,7 @@ app.use(helmet());
 // setup routers
 app.use('/api', game)
 app.use('/api/mailing-list', spamPrevention, mailinglist);
-app.use('/api/contact-form', spamPrevention, contactform);
+app.use('/api/contact-form', contactform);
 app.use('/api/register', register);
 app.use('/api/login', login);
 app.use('/api/user', user);

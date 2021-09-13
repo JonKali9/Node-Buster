@@ -11,7 +11,6 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import OurMission from './pages/Our-Mission';
 import ContactUs from "./pages/Contact-Us";
-import Timeline from './pages/Timeline';
 import Play from './pages/Play'
 import Error from './pages/Error';
 
@@ -28,7 +27,6 @@ function App() {
           <Route exact path='/login' component={Login} />
           <Route exact path='/our-mission' component={OurMission} />
           <Route exact path='/contact-us' component={ContactUs} />
-          <Route exact path='/timeline' component={Timeline} />
           <Route exact path='/play' component={Play} />
           <Route component={Error} />
         </Switch>
