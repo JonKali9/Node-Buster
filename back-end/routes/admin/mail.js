@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../database/mailing-list');
-const sendMail = require('../mail');
+const db = require('../../database/mailing-list');
+const sendMail = require('../../mail');
 
 
 /* Contact Form. */

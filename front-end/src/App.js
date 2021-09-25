@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Admin from './game/Admin';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import User from './pages/User';
 import OurMission from './pages/Our-Mission';
 import ContactUs from "./pages/Contact-Us";
 import Play from './pages/Play'
@@ -25,6 +26,7 @@ function App() {
           <Route exact path='/register' component={Register} />
           <Route exact path='/register/:invite' component={Register} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/user/:username' component={User} />
           <Route exact path='/our-mission' component={OurMission} />
           <Route exact path='/contact-us' component={ContactUs} />
           <Route exact path='/play' component={Play} />

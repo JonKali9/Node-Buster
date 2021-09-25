@@ -5,6 +5,8 @@
     grid-template-columns: auto auto;
     align-items: center;
     min-height: 4rem;
+    position: relative;
+    bottom: 0;
 }
 #footer #left {
     margin-left: 2.75rem;

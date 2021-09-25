@@ -127,33 +127,33 @@ export default function Game() {
     //Actual Page
     return (
         <div id='game'>
+            {/* Header */}
+            <header>
+                <div id='left'>
+                    <Link to='/'><img id='logo' alt='logo' src={Logo} /></Link>
+                </div>
+                <div id='right' style={window.innerWidth >= 1000 ? {'gridTemplateColumns':'1fr 3rem'} : {'gridTemplateColumns':'1fr'}}>
+                    <div>
+                        <p>Welcome, <span>{username}</span>. <span id='button' onClick={()=>{removeCookie('session'); setUsername(''); window.location.replace('/login')}}>Log Out</span></p>
+                        <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
+                    </div>
+                    { window.innerWidth >= 1000 ?
+                        <div>
+                            {
+                                sidebarOpen ?
+                                <img src={Arrow} onClick={()=>{setSidebarOpen(!sidebarOpen)}} style={{rotate:'-90deg'}} /> :
+                                <img src={Arrow} onClick={()=>{setSidebarOpen(!sidebarOpen)}} style={{rotate:'90deg'}} />
+                            }
+                        </div> : null
+                    }
+                </div>
+            </header>
             {
                 isMobile ? <>
                     <h1>Node Buster is not available on Mobile.</h1>
                     <h1>An App is however currently in development.</h1>
                 </> : <>
                     {username ? <>
-                    {/* Header */}
-                    <header>
-                        <div id='left'>
-                            <Link to='/'><img id='logo' alt='logo' src={Logo} /></Link>
-                        </div>
-                        <div id='right' style={window.innerWidth >= 1000 ? {'gridTemplateColumns':'1fr 3rem'} : {'gridTemplateColumns':'1fr'}}>
-                            <div>
-                                <p>Welcome, <span>{username}</span>. <span id='button' onClick={()=>{removeCookie('session'); setUsername(''); window.location.replace('/login')}}>Log Out</span></p>
-                                <p>Balance: ${balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
-                            </div>
-                            { window.innerWidth >= 1000 ?
-                                <div>
-                                    {
-                                        sidebarOpen ?
-                                        <img src={Arrow} onClick={()=>{setSidebarOpen(!sidebarOpen)}} style={{rotate:'-90deg'}} /> :
-                                        <img src={Arrow} onClick={()=>{setSidebarOpen(!sidebarOpen)}} style={{rotate:'90deg'}} />
-                                    }
-                                </div> : null
-                            }
-                        </div>
-                    </header>
                     {/* Left */}            
                     <div id='game-left'>
                         <div id='visuals'>

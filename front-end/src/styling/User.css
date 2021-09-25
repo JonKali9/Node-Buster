@@ -1,0 +1,84 @@
+#user {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #121212;
+    color: white;
+}
+
+#user #particles {
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+}
+
+#user header {
+    background-image: linear-gradient(to bottom, rgb(28, 28, 31), rgba(255, 255, 255, 0));
+    width: 100%;
+    height: 50vh;
+    min-height: 18rem;
+    display: flex;
+    align-items: center;
+}
+#user #logo {
+    min-width: 20rem;
+    max-width: 25rem;
+    width: 30%;
+    margin: auto;
+}
+
+#user h1 {
+    font-size: 3rem;
+    text-decoration: underline;
+}
+#user h2 {
+    font-size: 2rem;
+}
+
+#user #footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#user #info {
+    max-width: 40vw;
+    min-width: 30rem;
+    margin: 0 auto;
+    margin-bottom: 10rem;
+    padding: 2rem 5rem;
+    border: .4rem solid #2e2e2ed8;
+    border-radius: .9rem;
+    background-color: #121212d8;
+    z-index: 100000;
+    position: relative;
+
+    display: grid;
+    text-align: left;
+    grid-template-rows: 3.6rem 3rem auto;
+}
+
+#user #info p {
+    margin-bottom: .2rem;
+}
+
+#user #info #stats {
+    padding-left: 1rem;
+    border-left: .25rem solid #2e2e2ed8;
+}
+
+
+@media (orientation : portrait) {    
+    #user #logo {
+        width: 100%;
+        padding: 1.5rem;
+        min-width: 15rem;
+        max-width: 35rem;
+    }
+    #user #content form {
+        width: 85%;
+        max-width: 35rem;
+    }
+}
